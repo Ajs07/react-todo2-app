@@ -1,7 +1,7 @@
 import React from 'react'
 
-// Menerima function toggleCompleted sebagai sebuah prop
-const TodoItem = ({ todo, toggleCompleted }) => {
+// Menerima function toggleCompleted,deleteTodo sebagai sebuah prop
+const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
   // Mendefinisikan getTodoTitleStyle di sini
   // Cara dilakukan untuk mendefinisikan sebuah function untuk mengubah CSS
   const getTodoTitleStyle = () => {
@@ -19,26 +19,35 @@ const TodoItem = ({ todo, toggleCompleted }) => {
           // memberikan id dari todo sebagai argument  
           toggleCompleted(todo.id)}/>
           <p style={getTodoTitleStyle()}>{todo.title}</p>
+          <button style={styles.button} onClick={() => {
+            deleteTodo(todo.id)}}>x</button>
         </div>
     )
 }
 
-// Menuliskan sebuah object berisikan property CSS langsung di dalam JSX
 const styles = {
-    todoItem: {
-      border: '2px solid #f4f4f4',
-      fontSize: '24px',
-      // Tambahkan styles di bawah ini
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    // Tambahkan styles di bawah ini
-    checkbox: {
-      marginRight: '10px',
-      height: '18px',
-      width: '18px',
-    },
-  }
+  todoItem: {
+    border: '2px solid #f4f4f4',
+    fontSize: '24px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0 20px',
+  },
+  checkbox: {
+    height: '18px',
+    width: '18px',
+  },
+  button: {
+    backgroundColor: '#BB0000',
+    color: '#fff',
+    height: '30px',
+    width: '30px',
+    borderRadius: '100%',
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: '16px',
+  },
+}
 
 export default TodoItem
