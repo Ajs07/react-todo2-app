@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import TodoForm from './components/TodoForm'
 import Todos from './components/Todos'
 
 function App() {
@@ -32,15 +33,36 @@ function App() {
       setTodos(updateTodos)
     }
 
+    // Definisikan function deleteTodo
     const deleteTodo = (todoId) => {
       const updatedTodos = todos.filter((todo) => todo.id !== todoId)
       setTodos(updatedTodos)
     }
 
+    // Definisikan function addTodo
+    const addTodo = (todoTitle) => {
+      if (todoTitle === '') {
+        return // Tambahkan validasi jika ternyata tidak ada yang diketikkan sebagai title
+      }
+
+      // Buat data newTodo menggunakan nilai dari todoTitle
+      const newTodo = {
+        id: todos.length + 1,
+        title: todoTitle,
+        completed: false
+      }
+
+      // DefinisikanupdateTodos dalam format [{...}, {...}, {...}] di mana data new todo ditambahkan menggunakan method concat dan perbarui state todos
+      const updateTodos = todos.concat(newTodo)
+      setTodos(updateTodos)
+    }
+
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>My Todo List</h1>
-      {/* Teruskan function toggleCompleted ke component Todos */}
+      <TodoForm addTodo={addTodo}/>
+      {/* Teruskan function toggleCompleted ke 
+      component Todos */}
       <Todos todos={todos} toggleCompleted={toggleCompleted} deleteTodo={deleteTodo}/>
     </div>
   )
