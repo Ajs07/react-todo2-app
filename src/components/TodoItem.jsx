@@ -1,7 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { TodoContext } from '../App'
 
-// Menerima function toggleCompleted,deleteTodo sebagai sebuah prop
-const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
+//1.  Menerima function toggleCompleted,deleteTodo sebagai sebuah prop
+//2. Hapus toggleCompleted dan deleteTodo dari props
+const TodoItem = ({ todo }) => {
+  // Peroleh "toggleCompleted" dan "deleteTodo" dari TodoContext
+  /*Memperoleh function toggleCompleted dan deleteTodo dari TodoContext menggunakan useContext.
+  Hanya nilai yang ditentukan dalam value dari TodoContext.Provider yang dapat diperoleh dengan useContext. */
+  const { toggleCompleted, deleteTodo } = useContext(TodoContext)
   // Mendefinisikan getTodoTitleStyle di sini
   // Cara dilakukan untuk mendefinisikan sebuah function untuk mengubah CSS
   const getTodoTitleStyle = () => {
